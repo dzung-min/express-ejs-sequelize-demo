@@ -54,3 +54,24 @@ export async function getEditProduct(req, res, next) {
     product,
   })
 }
+
+/**
+ * @type {import("express").RequestHandler}
+ */
+export async function postEditProduct(req, res, next) {
+  try {
+    const prodId = req.body.productId
+    await Product.update(
+      {
+        title: req.body.title,
+        imgUrl: req.body.imgUrl,
+        price: req.body.price,
+        description: req.body.description,
+      },
+      { where: { id: prodId } }
+    )
+    res.redirect("/admin")
+  } catch (error) {
+    console.log(error)
+  }
+}
