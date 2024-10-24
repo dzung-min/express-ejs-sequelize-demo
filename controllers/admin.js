@@ -41,3 +41,16 @@ export async function postAdminCreate(req, res, next) {
     console.log(error)
   }
 }
+
+/**
+ * @type {import("express").RequestHandler}
+ */
+export async function getEditProduct(req, res, next) {
+  const productId = req.params.id
+  const product = await Product.findByPk(productId)
+  res.render("admin/edit-product", {
+    pageTitle: "Update Product",
+    path: "/admin",
+    product,
+  })
+}

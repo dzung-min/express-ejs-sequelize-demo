@@ -1,16 +1,20 @@
-<div class="mt-5">
-  <% if (products.length > 0) { %>
-  <form class="mb-5" action="/admin/create" method="get">
-    <button class="btn btn-primary">Create</button>
-  </form>
-  <% products.forEach(product => { %>
+<form class="mt-5" action="/admin/create" method="get">
+  <button class="btn btn-primary">Create</button>
+</form>
+<div class="mt-5 d-flex">
+  <% if (products.length > 0) { %> <% products.forEach(product => { %>
   <div class="card" style="width: 18rem">
     <img src="<%= product.imgUrl %>" class="card-img-top" alt="..." />
     <div class="card-body">
       <h5 class="card-title"><%= product.title %></h5>
       <p class="card-text">$<%= product.price %></p>
-      <p class="card-text"><%= product.description %></p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <p class="card-text"><%= product.description.slice(0, 100) %></p>
+      <div class="d-flex justify-content-between">
+        <a href="/admin/edit/<%= product.id %>" class="btn btn-info">Edit</a>
+        <form action="/admin/delete-product" method="post">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
     </div>
   </div>
   <% }) %> <% } else { %>
