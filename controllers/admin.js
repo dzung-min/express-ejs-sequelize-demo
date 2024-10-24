@@ -75,3 +75,17 @@ export async function postEditProduct(req, res, next) {
     console.log(error)
   }
 }
+
+/**
+ * @type {import("express").RequestHandler}
+ */
+export async function postDeleteProduct(req, res, next) {
+  try {
+    const prodId = req.body.productId
+    const product = await Product.findByPk(prodId)
+    await product.destroy()
+    res.redirect("/admin")
+  } catch (error) {
+    console.log(error)
+  }
+}

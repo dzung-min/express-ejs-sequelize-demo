@@ -5,6 +5,7 @@ import {
   getAllProducts,
   getEditProduct,
   postAdminCreate,
+  postDeleteProduct,
   postEditProduct,
 } from "../controllers/admin.js"
 
@@ -15,5 +16,6 @@ router.get("/create", getAdminCreate)
 router.post("/create", postAdminCreate)
 router.get("/edit/:id", getEditProduct)
 router.post("/edit", postEditProduct)
+router.post("/delete-product", postDeleteProduct)
 
 export default router
